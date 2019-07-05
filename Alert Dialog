@@ -1,0 +1,28 @@
+public void OnExitclick ( View v )
+        {
+           // first build dialoge  ...............................................................
+           
+           AlertDialog.Builder myalertb = new AlertDialog.Builder(MainActivity.this);
+           
+           // alert attributes....................................................................
+           
+            myalertb.setCancelable(true)
+                    .setMessage("are u sure u want to exit?")
+                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+            // build alert dialoge ...............................................................
+            
+            AlertDialog _alert = myalertb.create();
+            _alert.setTitle("ALERT!!!!");
+            _alert.show();
+        }
