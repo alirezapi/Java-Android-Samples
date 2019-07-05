@@ -1,0 +1,6 @@
+// this is a capability for switching between activities.............................
+  public void Onbtnclick ( View v )
+        {
+            Intent i= new Intent(this , pinkact.class);
+            startActivity(i);
+        }
