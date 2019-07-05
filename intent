@@ -4,3 +4,6 @@
             Intent i= new Intent(this , pinkact.class);
             startActivity(i);
         }
+// for sending data inter-activities
+ 
+ i.putExtra("label for example username", variable for example t that contains data );
