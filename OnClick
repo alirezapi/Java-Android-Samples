@@ -1,4 +1,13 @@
-aswavsdcv
-ascasdcasc
-sacacascas
-ascascasc
+ Button Mybtn = (Button) findViewById(R.id.btnSum);
+            Mybtn.setOnClickListener( new Button.OnClickListener(){
+                    public void onClick (View v){
+                        TextView Num1 = (TextView) findViewById(R.id.txtNum1);
+                        TextView Num2 = (TextView) findViewById(R.id.txtNum2);
+                        TextView Result = (TextView) findViewById(R.id.txtResult);
+                        int a = Integer.parseInt(Num1.getText().toString());
+                        int b = Integer.parseInt(Num2.getText().toString());
+                        int c = a + b ;
+                        Result.setText(Integer.toString(c));
+                    }
+                }
+        );
