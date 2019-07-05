@@ -11,4 +11,6 @@
                     }
                 }
         );
-//on click event for a basic calculator..................................................
+//on click event for a basic calculator................................................
+//we can also use Onclick option at attributes of xml files and then with inserting a 
+//public method with that name we can use it as an event.
