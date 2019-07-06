@@ -1,0 +1,8 @@
+   public void OnShowClick (View v )
+    {
+        RadioGroup  My_rg1 = (RadioGroup) findViewById(R.id.rg1);
+        int selectedRB = My_rg1.getCheckedRadioButtonId();
+        RadioButton rb= (RadioButton) findViewById(selectedRB);
+        Toast.makeText( MainActivity.this , rb.getText().toString() , Toast.LENGTH_SHORT ).show();
+    }
+    // notice that in checkbox the function (isselected) is using ............................................................
