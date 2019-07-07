@@ -1,2 +1,42 @@
+//firs of all we should import these libraries....................................................................
 
-    onsolved problem with libraries
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;.
+
+//right click on layout folder and open  two new blank fragment and import the libraries mentioned before..........
+//add two button to fragment manager activity and set onclick event by one common name ............................
+//add these xml codes to fragment manager activity layout:.........................................................
+
+            <fragment
+            android:id="@+id/frag_place"
+            android:name="com.example.myapplication.my_fragment_1"
+            android:layout_width="match_parent"
+            android:layout_height="422dp"
+            tools:layout="@layout/fragment_my_fragment_1" 
+            />
+            
+// add these java codes to fragment manager activity ...............................................................
+
+ public void onbtnClick (View v)
+    {
+        Fragment fr ;
+        if (v==findViewById(R.id.btnfr1))
+        {
+        fr = new my_fragment_1();
+        FragmentManager fm= getFragmentManager();
+        FragmentTransaction ft= fm.beginTransaction();
+        ft.replace(R.id.frag_place,fr);
+        ft.commit();
+        }
+        if (v==findViewById(R.id.btnfr2))
+        {
+            fr = new my_fragment_2();
+            FragmentManager fm= getFragmentManager();
+            FragmentTransaction ft= fm.beginTransaction();
+            ft.replace(R.id.frag_place,fr);
+            ft.commit();
+        }
+    }
+ 
+
