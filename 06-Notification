@@ -1,1 +1,24 @@
-
+public class MainActivity extends AppCompatActivity {
+    Notification.Builder my_notif ;//....................................................این ضروریه
+    public static final int uniqueID=12345;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        my_notif = new Notification.Builder(this);//......................................این ضروریه
+        my_notif.setAutoCancel(true);  // باعث میشود  که بعد از کلیک روی نوتیفیکیشن از بالا حذف شود 
+    }
+    public void onnotifClick (View v )
+    {
+        my_notif.setSmallIcon(R.mipmap.ic_launcher);
+        my_notif.setTicker("This is my Ticker");
+        my_notif.setWhen(System.currentTimeMillis());
+        my_notif.setContentTitle("This is my title");
+        my_notif.setContentText("This is my content text");
+        Intent i =new Intent(this,MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivities(this,0,new Intent[] {i},PendingIntent.FLAG_UPDATE_CURRENT);
+        my_notif.setContentIntent(pi);
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(uniqueID,my_notif.build());
+    }
+}
