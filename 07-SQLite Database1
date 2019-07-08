@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 /////////////////////////////******............third step...........******/////////////////////////////////
 
-//write a methode in myDatabaseHelper for inserting data to table.................................
+//write a methode in myDatabaseHelper for ****** inserting data ****** to table.................................
 
  public boolean insertdata(String n)
     {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
      }
 /////////////////////////////******............fourth step...........******/////////////////////////////////
 
-//write a methode in myDatabaseHelper for deleting data from table.................................
+//write a methode in myDatabaseHelper for ****** deleting data ****** from table.................................
 
     public boolean deletedata(String id)
     {
@@ -119,3 +119,85 @@ public void onbtnDeleteClick (View v)
          Toast.makeText(MainActivity.this,m,Toast.LENGTH_SHORT).show();
 
      }
+/////////////////////////////******............fifth step...........******/////////////////////////////////
+
+//write a methode in myDatabaseHelper for ****** updating ****** tables Data.....................................
+
+    public boolean updatedata(String id, String n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("NAME",n);
+        cv.put("ID",id);
+        long result = db.update(TBL_Name,cv,"ID=?",new String[] {id});
+        if (result <1)
+            return false;
+        else
+            return true;
+    }
+ // use this method in main activity for updating data............................................
+ 
+    public void onUpdateClick(View v)
+    {
+        EditText etid = (EditText) findViewById(R.id.etNewID);
+        EditText etname = (EditText) findViewById(R.id.etNewName);
+        if (etid.getText().toString().length()> 0 && etname.getText().toString().length()>0)
+        {
+            boolean f = myDB.updatedata(etid.getText().toString(),etname.getText().toString());
+            String m ="";
+            if(f == true)
+            {
+                m="Data updated";
+            }
+            else
+            {
+                m="An Error Occured In updating Process";
+            }
+            Toast.makeText(Otheroperations.this,m,Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            etid.setHint("Enter an ID!!!!");
+            etname.setHint("Enter a Name!!!");
+        }
+
+    }
+
+/////////////////////////////******............sixth step...........******/////////////////////////////////
+
+//write a methode in myDatabaseHelper for ****** showing tables ******* Data.....................................
+
+ public Cursor showdata ()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select * from "+TBL_Name,null);
+        return result;
+
+    }
+
+
+// use this method in main activity for showing data..............................................
+
+ public void onbtnShowClick (View v)
+    {
+        Cursor res = myDB.showdata();
+        if (res.getCount()==0)
+        {
+            Toast.makeText(Otheroperations.this , "there is no data" , Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            StringBuffer data = new StringBuffer();
+            while (res.moveToNext())
+            {
+                data.append("ID : "+ res.getString(0)+"\n");
+                data.append("NAME : "+ res.getString(0)+"\n");
+            }
+            AlertDialog.Builder alert= new AlertDialog.Builder(this);
+            alert.setCancelable(true);
+            alert.setTitle("** ALL  DATA **");
+            alert.setMessage(data.toString());
+            alert.show();
+        }
+    }
+
