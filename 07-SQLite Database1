@@ -82,4 +82,40 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(MainActivity.this,m,Toast.LENGTH_SHORT).show();
      }
+/////////////////////////////............fourth step.........../////////////////////////////////
 
+//write a methode in myDatabaseHelper for deleting data from table.................................
+
+    public boolean deletedata(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TBL_Name,"ID=?",new String[] {id});
+        if (result== 0)  /// this is not -1 .....................................................
+        return false;
+        else
+            return true;
+    }
+ // use this method in main activity for deleting data............................................
+
+public void onbtnDeleteClick (View v)
+     {
+         EditText eti = findViewById ( R.id.etid );
+         String temp = eti.getText().toString();
+         if(temp.length()<1)
+         {
+             eti.setHint("Enter an ID !");
+             return;
+         }
+         Boolean f =myDB.deletedata(temp);
+         String m ="";
+         if(f == true)
+         {
+             m="Data Deleted";
+         }
+         else
+         {
+             m="An Error Occured In Deleting Process";
+         }
+         Toast.makeText(MainActivity.this,m,Toast.LENGTH_SHORT).show();
+
+     }
