@@ -38,3 +38,48 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 // at this point we have been make  a new data base..............................................
+
+/////////////////////////////............third step.........../////////////////////////////////
+
+//write a methode in myDatabaseHelper for inserting data to table.................................
+
+ public boolean insertdata(String n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("NAME",n);
+        long result = db.insert(TBL_Name,null,cv);
+        if (result== -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
+// use this method in main activity for inserting data............................................
+
+    public void btnSaveclick (View v)
+    {
+        EditText etn = findViewById(R.id.txtplain);
+        String temp = etn.getText().toString();
+        if(temp.length()<2)
+        {
+            etn.setHint("Enter a name !");
+            return;
+        }
+        Boolean f =myDB.insertdata(temp);
+        String m ="";
+        if(f == true)
+        {
+            m="Data Inserted";
+        }
+        else
+        {
+            m="An Error Occured In Inserting Process!";
+        }
+        Toast.makeText(MainActivity.this,m,Toast.LENGTH_SHORT).show();
+     }
+
