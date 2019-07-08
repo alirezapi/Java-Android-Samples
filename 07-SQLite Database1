@@ -1,4 +1,4 @@
-/////////////////////////////............first step.........../////////////////////////////////
+/////////////////////////////******............first step...........******/////////////////////////////////
 
 //first we should add a class to project and override these methodes:
   public class myDatabaseHelper extends SQLiteOpenHelper  //// do not forget extends SQLiteOpenHelper.............
@@ -24,7 +24,7 @@
     onCreate(db);
     }
 }
-/////////////////////////////............second step.........../////////////////////////////////
+/////////////////////////////******............second step...........******/////////////////////////////////
 
 // we should declare our changes to main activity...............................................
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 }
 // at this point we have been make  a new data base..............................................
 
-/////////////////////////////............third step.........../////////////////////////////////
+/////////////////////////////******............third step...........******/////////////////////////////////
 
 //write a methode in myDatabaseHelper for inserting data to table.................................
 
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(MainActivity.this,m,Toast.LENGTH_SHORT).show();
      }
-/////////////////////////////............fourth step.........../////////////////////////////////
+/////////////////////////////******............fourth step...........******/////////////////////////////////
 
 //write a methode in myDatabaseHelper for deleting data from table.................................
 
