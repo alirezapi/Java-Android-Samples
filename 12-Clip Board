@@ -1,0 +1,33 @@
+//کلیپ بورد حافظه موقتی است که هنگام کپی پیست کردن استفاده میشود ....................................
+
+public class MainActivity extends AppCompatActivity {
+
+    private ClipboardManager clipBmanager;
+    private ClipData clipdata;
+    private EditText etcopy , etpaste;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        etcopy = findViewById(R.id.etcopy);
+        etpaste =findViewById(R.id.etpaste);
+        clipBmanager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
+    }
+    public void oncopyClick (View v )
+    {
+        String text =etcopy.getText().toString();
+        clipdata = ClipData.newPlainText("label matn", text);
+        clipBmanager.setPrimaryClip(clipdata);
+        Toast.makeText(getApplicationContext(),"text copied",Toast.LENGTH_SHORT).show();
+    }
+    public void onpasteClick (View v )
+    {
+        ClipData temp = clipBmanager.getPrimaryClip();
+        ClipData.Item _item = temp.getItemAt(0);
+        String text = _item.getText().toString();
+        etpaste.setText(text);
+        Toast.makeText(getApplicationContext(),"text pasted !", Toast.LENGTH_SHORT).show();
+    }
+}
