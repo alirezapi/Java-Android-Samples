@@ -1,0 +1,34 @@
+package com.example.mysensor;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.widget.TextView;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+////.................................................................................................................
+    private SensorManager sensor_manager ;
+////.................................................................................................................
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+////.................................................................................................................
+        TextView tv  = findViewById(R.id.textView);
+        sensor_manager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
+        List<Sensor> my_list = sensor_manager.getSensorList(Sensor.TYPE_ALL);
+        StringBuilder data = new StringBuilder();
+        for ( Sensor s :  my_list)
+        {
+            data.append(s.getName()+"\n");
+            data.append(s.getVendor()+"\n");
+            data.append(s.getVersion()+"\n");
+        }
+        tv.setText(data.toString());
+    }
+////.................................................................................................................
+
+}
