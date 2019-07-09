@@ -1,0 +1,13 @@
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ////.......................................................................
+        TextView tv = findViewById(R.id.tv1);
+        tv.setClickable(true);
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = "<a href='http://irprogram.com'> IRPROGRAM </a>";
+        tv.setText(Html.fromHtml(text));
+        ////........................................................................
+    }
