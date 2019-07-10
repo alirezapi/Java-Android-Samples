@@ -1,0 +1,65 @@
+// add this code to the manifest file .................................................................................
+
+        <uses-feature
+                android:name="android.hardware.Camera"
+                android:required="true"
+        />
+    
+//this is java code.....................................................................................................
+
+
+public class MainActivity extends AppCompatActivity {
+
+//......................................................................................................................
+
+     final static int REQUEST_IMAGE_CAPTURE = 1 ;
+     ImageView image_View ;
+//......................................................................................................................
+
+     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+//......................................................................................................................
+
+        image_View = findViewById(R.id.imageView);
+        if (!hascamera())
+        {
+            Button btn = findViewById(R.id.btnCapture);
+            btn.setText("Can not Find Camera!");
+            btn.setEnabled(false);
+        }
+    }
+    
+//......................................................................................................................
+
+    private boolean hascamera ()
+    {
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    }
+    
+//......................................................................................................................
+
+    public void onbtnCaptureClick (View v)
+    {
+        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(i,REQUEST_IMAGE_CAPTURE);
+    }
+
+//......................................................................................................................
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode== REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
+        {
+            Bundle b = data.getExtras();
+            Bitmap photo = (Bitmap) b.get("data");
+            image_View .setImageBitmap(photo);
+
+        }
+        else
+        {
+            Toast.makeText(this,"You have not been Captured Any Picture!",Toast.LENGTH_SHORT).show();
+        }
+    }
+}
