@@ -1,1 +1,44 @@
 
+public class MainActivity extends AppCompatActivity {
+//...................................................................................................................
+
+    private EditText x_Axis , y_Axis , x_Movement , y_Movement;
+    float x= 0f;
+    float y= 0f;
+    float Last_x = 0f;
+    float Last_y = 0f;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+//...................................................................................................................
+        x_Axis = findViewById(R.id.txt_x_axis);
+        y_Axis = findViewById(R.id.txt_y_axis);
+        x_Movement = findViewById(R.id.txt_x_movement);
+        y_Movement = findViewById(R.id.txt_y_movment);
+    }
+//...................................................................................................................
+    @Override
+    public boolean onTouchEvent(MotionEvent ev)
+    {
+        int action = ev.getAction();
+        if (action == MotionEvent.ACTION_DOWN )
+        {
+            Last_x = ev.getX();
+            Last_y=ev.getY();
+            x_Axis.setText(Float.toString(Last_x));
+            y_Axis.setText(Float.toString(Last_y));
+
+        }
+        else if(action == MotionEvent.ACTION_MOVE)
+        {
+            Last_x= ev.getX();
+            Last_y = ev.getY();
+
+            x_Movement.setText(Float.toString(Last_x));
+            y_Movement.setText(Float.toString(Last_y));
+        }
+        return true;
+    }
+}
